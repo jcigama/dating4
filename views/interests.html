@@ -1,0 +1,149 @@
+<!--
+    Name: Joseph Igama
+    Date: 02/25/2021
+    Purpose: A registration system that will setup a dating classes with details provided by the user
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interests | G&G</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-light bg-light ">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 "><a href="../dating3">G&G</a></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <br>
+        <h1>Interests</h1>
+        <hr>
+
+        <!--Form-->
+        <form method="post" action="#">
+                <div class="row">
+                    <!-- column 1 -->
+                    <div class="col">
+                        <p><strong>Indoor Interests</strong></p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="tv" value="tv">
+                            <label class="form-check-label" for="tv">tv</label>
+                        </div>
+                        <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="puzzles" value="puzzles">
+                            <label class="form-check-label" for="puzzles">puzzles</label>
+                        </div>
+
+                        <!-- Inline error message -->
+                        <div class="text-danger">
+                            <check if="{{ isset(@errors['indoorInterests']) }}">
+                                <span>{{ @errors['indoorInterests'] }}</span>
+                            </check>
+                        </div>
+
+                        <!-- Break to preserve spacing -->
+                        <check if="{{ @errors==NULL }}">
+                            <br>
+                        </check>
+
+                        <!-- Break to preserve spacing -->
+                        <check if="{{ isset(@errors['outdoorInterests']) }}">
+                            <br>
+                        </check>
+
+                        <p><strong>Outdoor Interests</strong></p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="outdoorInterests[]" id="hiking" value="hiking">
+                            <label class="form-check-label" for="hiking">hiking</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="outdoorInterests[]" id="walking" value="walking">
+                            <label class="form-check-label" for="walking">walking</label>
+                        </div>
+
+                        <!-- Inline error message -->
+                        <div class="text-danger">
+                            <check if="{{ isset(@errors['outdoorInterests']) }}">
+                                <span>{{ @errors['outdoorInterests'] }}</span>
+                            </check>
+                        </div>
+
+                    </div>
+
+                    <!-- column 2 -->
+                    <div class="col">
+                        <p><br></p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="movies" value="movies">
+                            <label class="form-check-label" for="movies">movies</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="reading" value="reading">
+                            <label class="form-check-label" for="reading">reading</label>
+                        </div>
+
+                        <p><br><br></p>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="outdoorInterests[]" id="biking" value="biking">
+                            <label class="form-check-label" for="biking">biking</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="outdoorInterests[]" id="climbing" value="climbing">
+                            <label class="form-check-label" for="climbing">climbing</label>
+                        </div>
+                    </div>
+
+                    <!-- column 3 -->
+                    <div class="col">
+                        <p><br></p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="cooking" value="cooking">
+                            <label class="form-check-label" for="cooking">cooking</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="cards" value="playing cards">
+                            <label class="form-check-label" for="cards">playing cards</label>
+                        </div>
+
+                        <p><br><br></p>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="outdoorInterests[]" id="swimming" value="swimming">
+                            <label class="form-check-label" for="swimming">swimming</label>
+                        </div>
+                    </div>
+
+                    <!-- column 4 -->
+                    <div class="col">
+                        <p><br></p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="boardgames" value="board games">
+                            <label class="form-check-label" for="boardgames">board games</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="videogames" value="video games">
+                            <label class="form-check-label" for="videogames">video games</label>
+                        </div>
+
+                        <p><br><br></p>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="outdoorInterests[]" id="collecting" value="collecting">
+                            <label class="form-check-label" for="collecting">collecting</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-info" type="submit" >Next</button>
+                </div>
+            </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!--
+    Name: Joseph Igama
+    Date: 02/25/2021
+    Purpose: A registration system that will setup a dating classes with details provided by the user
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summary | G&G</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!--Form-->
+    <nav class="navbar navbar-light bg-light ">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 "><a href="../dating3">G&G</a></span>
+        </div>
+    </nav>
+    <div class="container">
+        <br>
+
+        <!--Summary-->
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name: {{ @SESSION.fName }}</li>
+                        <li class="list-group-item">Gender: {{ @SESSION.lName }}</li>
+                        <li class="list-group-item">Age: {{ @SESSION.age }}</li>
+                        <li class="list-group-item">Phone: {{ @SESSION.number }}</li>
+                        <li class="list-group-item">Email: {{ @SESSION.email }}</li>
+                        <li class="list-group-item">State: {{ @SESSION.state }}</li>
+                        <li class="list-group-item">Seeking: {{ @SESSION.genderInterest }}</li>
+                        <li class="list-group-item">
+                            Interests: {{ @SESSION.indoorInterests }}, {{ @SESSION.outdoorInterests}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--Biography-->
+            <div class="col text-center">
+                <p>Lorem ipsum image</p>
+                <img src="images/Aphrodite.png">
+                <h3>Biography</h3>
+                <p>{{ @SESSION.biography }}</p>
+            </div>
+        </div>
+        <br>
+        <!--Contact Button-->
+        <div class="text-center">
+           <button class="btn btn-info">Contact Me!</button>
+        </div>
+    </div>
+</body>
+</html>
