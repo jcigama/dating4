@@ -1,6 +1,6 @@
 <!--
     Name: Joseph Igama
-    Date: 02/25/2021
+    Date: 03/04/2021
     Purpose: A registration system that will setup a dating classes with details provided by the user
 -->
 
@@ -26,16 +26,25 @@
             <div class="col">
                 <div class="card" style="width: 18rem;">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Name: {{ @SESSION.fName }}</li>
-                        <li class="list-group-item">Gender: {{ @SESSION.lName }}</li>
-                        <li class="list-group-item">Age: {{ @SESSION.age }}</li>
-                        <li class="list-group-item">Phone: {{ @SESSION.number }}</li>
-                        <li class="list-group-item">Email: {{ @SESSION.email }}</li>
-                        <li class="list-group-item">State: {{ @SESSION.state }}</li>
-                        <li class="list-group-item">Seeking: {{ @SESSION.genderInterest }}</li>
-                        <li class="list-group-item">
-                            Interests: {{ @SESSION.indoorInterests }}, {{ @SESSION.outdoorInterests}}
-                        </li>
+                        <li class="list-group-item">Name: {{ @fName }}</li>
+                        <li class="list-group-item">Gender: {{ @lName }}</li>
+                        <li class="list-group-item">Age: {{ @age }}</li>
+                        <li class="list-group-item">Phone: {{ @phone }}</li>
+                        <li class="list-group-item">Email: {{ @email }}</li>
+                        <li class="list-group-item">State: {{ @state }}</li>
+                        <li class="list-group-item">Seeking: {{ @seeking }}</li>
+                        <check if="{{ isset(@inDoorInterests) || isset(@outDoorInterests)}}">
+                            <li class="list-group-item">
+                                <p>Interests: </p>
+                                <repeat group="{{ @inDoorInterests }}" value="{{ @inDoorInterest }}">
+                                    <p>{{ @inDoorInterest }}</p>
+                                </repeat>
+
+                                <repeat group="{{ @outDoorInterests }}" value="{{ @outDoorInterest }}">
+                                    <p>{{ @outDoorInterest }}</p>
+                                </repeat>
+                            </li>
+                        </check>
                     </ul>
                 </div>
             </div>
@@ -45,7 +54,7 @@
                 <p>Lorem ipsum image</p>
                 <img src="images/Aphrodite.png">
                 <h3>Biography</h3>
-                <p>{{ @SESSION.biography }}</p>
+                <p>{{ @bio }}</p>
             </div>
         </div>
         <br>

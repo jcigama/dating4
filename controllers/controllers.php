@@ -101,6 +101,8 @@ class Controller
     /** Display profile info page */
     function profile()
     {
+        global $validator;
+
         //unserialize session and reassign to an instance variable
         $member = unserialize($_SESSION['$member']);
 
@@ -117,6 +119,7 @@ class Controller
                 $this->_f3->set('errors["email"]', "Invalid email. Please enter valid email.");
             }
 
+            //If no errors continue setting instance variables in object
             if (empty($this->_f3->get('errors'))) {
 
                 //Call set methods to assign parameters
@@ -125,13 +128,15 @@ class Controller
                 $member->setSeeking($genderInterest);
                 $member->setBio($biography);
 
+                //Store object in session
                 $_SESSION['$member'] = serialize($member);
 
-//                if ($member->isMember()) {
-//                    $this->_f3->reroute('/interests');
-//                } else {
-//                    $this->_f3->reroute('/summary');
-//                }
+                //Go to interests page if user is of member status. To summary if not
+                if ($member->isMember()) {
+                    $this->_f3->reroute('/interests');
+                } else {
+                    $this->_f3->reroute('/summary');
+                }
             }
         }
 
@@ -150,7 +155,9 @@ class Controller
     function interests()
     {
         global $validator;
-        global $profile;
+
+        //unserialize session and reassign to an instance variable
+        $member = unserialize($_SESSION['$member']);
 
         //If user submits data
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -158,12 +165,7 @@ class Controller
             //If there are selected indoor interests
             if (isset($_POST['indoorInterests'])) {
                 $indoorInterests = $_POST['indoorInterests'];
-
-                if ($validator->validIndoor($indoorInterests)) {
-                    $indoorString = implode(", ", $indoorInterests);
-                    $profile->setIndoorInterests($indoorInterests);
-                    $_SESSION['indoorInterests'] = $indoorString;
-                } else {
+                if (!$validator->validIndoor($indoorInterests)) {
                     $this->_f3->set('errors["indoorInterests"]', "Spoof attempt prevented!");
                 }
             }
@@ -171,18 +173,29 @@ class Controller
             //If there are selected indoor interests
             if (isset($_POST['outdoorInterests'])) {
                 $outdoorInterests = $_POST['outdoorInterests'];
-
-                if ($validator->validOutdoor($outdoorInterests)) {
-                    $outdoorString = implode(", ", $outdoorInterests);
-                    $profile->setOutdoorInterests($outdoorInterests);
-                    $_SESSION['outdoorInterests'] = $outdoorString;
-                } else {
+                if (!$validator->validOutdoor($outdoorInterests)) {
                     $this->_f3->set('errors["outdoorInterests"]', "Spoof attempt prevented!");
                 }
             }
 
             //If there are no errors, redirect user to summary page
             if (empty($this->_f3->get('errors'))) {
+
+                //Set indoor activities
+                if (isset($indoorInterests)) {
+                    $indoorString = implode(", ", $indoorInterests);
+                    $member->setInDoorInterests($indoorString);
+                }
+
+                //Set outdoor activites
+                if (isset($outdoorInterests)) {
+                    $outdoorString = implode(", ", $outdoorInterests);
+                    $member->setOutDoorInterests($outdoorString);
+                }
+
+                //Store object in session
+                $_SESSION['$member'] = serialize($member);
+
                 $this->_f3->reroute('/summary');
             }
         }
@@ -195,6 +208,24 @@ class Controller
     /** Display summary page */
     function summary()
     {
+        //unserialize session and reassign to an instance variable
+        $member = unserialize($_SESSION['$member']);
+
+        $this->_f3->set('fName', $member->getFName());
+        $this->_f3->set('lName', $member->getLName());
+        $this->_f3->set('age' , $member->getAge());
+        $this->_f3->set('gender', $member->getGender());
+        $this->_f3->set('phone', $member->getPhone());
+        $this->_f3->set('email', $member->getEmail());
+        $this->_f3->set('state', $member->getState());
+        $this->_f3->set('seeking', $member->getSeeking());
+        $this->_f3->set('bio', $member->getBio());
+
+        if ($member->isMember()){
+            $this->_f3->set('inDoorInterests', array($member->getInDoorInterests()));
+            $this->_f3->set('outDoorInterests', array($member->getOutDoorInterests()));
+        }
+
         $view = new Template();
         echo $view->render('views/summary.html');
     }

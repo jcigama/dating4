@@ -1,6 +1,6 @@
 <!--
     Name: Joseph Igama
-    Date: 02/25/2021
+    Date: 03/04/2021
     Purpose: A registration system that will setup a dating classes with details provided by the user
 -->
 
@@ -120,8 +120,15 @@
 
                     <div class="form-group">
                         <p class="font-weight-bold">Premium Membership</p>
-                        <input type="checkbox" name="premium">
-                        <label>Sign me up for a Premium Account!</label>
+                        <check if="{{ @premium=='on' }}">
+                            <true>
+                                <label><input type="checkbox" name="premium" checked> Sign me up for a Premium Account!</label>
+                            </true>
+                            <false>
+                                <label><input type="checkbox" name="premium"> Sign me up for a Premium Account!</label>
+                            </false>
+                        </check>
+
                         <br>
                     </div>
                 </div>

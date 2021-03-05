@@ -59,6 +59,10 @@ class Validate
         }
     }
 
+    /**
+     * @param $email
+     * @return bool
+     */
     function validEmail($email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);

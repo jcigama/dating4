@@ -1,6 +1,9 @@
 <?php
-
-
+/**
+ * Member class to store non-premium user data.
+ *
+ * @author Joseph Igama
+ */
 class Member
 {
     private $_fName;
@@ -13,7 +16,6 @@ class Member
     private $_state;
     private $_seeking;
     private $_bio;
-
 
     /**
      * Member constructor.

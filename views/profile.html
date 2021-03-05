@@ -1,6 +1,6 @@
 <!--
     Name: Joseph Igama
-    Date: 02/25/2021
+    Date: 03/04/2021
     Purpose: A registration system that will setup a dating classes with details provided by the user
 -->
 
@@ -80,14 +80,45 @@
 
                     <div class="form-group">
                         <p><strong>Seeking</strong></p>
-                        <input type="radio" name="genderInterest" id="No preference" value="No preference" checked>
-                        <label for="No preference">No preference &nbsp&nbsp</label>
-                        <input type="radio" name="genderInterest" id="god" value="god">
-                        <label for="god">God &nbsp&nbsp</label>
-                        <input type="radio" name="genderInterest" id="goddess" value="goddess">
-                        <label for="goddess">Goddess</label>
+
+                        <!-- Displays on initial visit or if user chooses no preference -->
+                        <check if="{{ @genderInterest==null || @genderInterest=='null' }}">
+                            <true>
+                                <input class="form-group" type="radio" name="genderInterest" id="No preference" value="null" checked>
+                                <label class="form-group" for="No preference">No preference &nbsp&nbsp </label>
+                            </true>
+                            <false>
+                                <input class="form-group" type="radio" name="genderInterest" id="No preference" value="null">
+                                <label class="form-group" for="No preference">No preference &nbsp&nbsp </label>
+                            </false>
+                        </check>
+
+                        <!-- Displays if user chooses god -->
+                        <check if="{{ @genderInterest=='god' }}">
+                            <true>
+                                <input class="form-group" type="radio" name="genderInterest" id="god" value="god" checked>
+                                <label class="form-group" for="god">God &nbsp&nbsp</label>
+                            </true>
+                            <false>
+                                <input class="form-group" type="radio" name="genderInterest" id="god" value="god">
+                                <label class="form-group" for="god">God &nbsp&nbsp</label>
+                            </false>
+                        </check>
+
+                        <!-- Displays if user chooses goddess -->
+                        <check if="{{ @genderInterest=='goddess' }}">
+                            <true>
+                                <input class="form-group" type="radio" name="genderInterest" id="goddess" value="goddess" checked>
+                                <label class="form-group" for="goddess">Goddess &nbsp&nbsp</label>
+                            </true>
+                            <false>
+                                <input class="form-group" type="radio" name="genderInterest" id="goddess" value="goddess">
+                                <label class="form-group" for="goddess">Goddess &nbsp&nbsp</label>
+                            </false>
+                        </check>
                     </div>
                 </div>
+
                 <div class="col">
                     <div class="form-group">
                         <label for="biography"><strong>Biography</strong></label><br>
@@ -95,11 +126,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="text-right">
                 <button class="btn btn-info" type="submit" >Next</button>
             </div>
         </form>
-
     </div>
 </body>
 </html>

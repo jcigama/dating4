@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Child class of member, if user opts-in for premium features
+ *
+ * @author Joseph Igama
+ */
 class PremiumMember extends Member
 {
     private $_inDoorInterests;
@@ -22,7 +26,6 @@ class PremiumMember extends Member
         $this->_inDoorInterests = $_inDoorInterests;
         $this->_outDoorInterests = $_outDoorInterests;
     }
-
 
     /**
      * @return mixed
