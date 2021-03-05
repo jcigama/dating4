@@ -1,24 +1,38 @@
 <?php
-/**
- * Stores and returns dating profile data submitted by user
- *
- * Data is stored via set methods. Data is returned via get methods.
- *
- * @author Joseph Igama
- */
-class Profile
+
+
+class Member
 {
     private $_fName;
     private $_lName;
     private $_age;
     private $_gender;
     private $_phone;
+    private $_member;
     private $_email;
     private $_state;
-    private $_genderInterest;
-    private $_biography;
-    private $_indoorInterests;
-    private $_outdoorInterests;
+    private $_seeking;
+    private $_bio;
+
+
+    /**
+     * Member constructor.
+     * @param $_fName
+     * @param $_lName
+     * @param $_age
+     * @param $_gender
+     * @param $_phone
+     * @param bool $_member
+     */
+    public function __construct($_fName, $_lName, $_age, $_gender, $_phone, $_member = false)
+    {
+        $this->_fName = $_fName;
+        $this->_lName = $_lName;
+        $this->_age = $_age;
+        $this->_gender = $_gender;
+        $this->_phone = $_phone;
+        $this->_member = $_member;
+    }
 
     /**
      * @return mixed
@@ -135,64 +149,43 @@ class Profile
     /**
      * @return mixed
      */
-    public function getGenderInterest()
+    public function getSeeking()
     {
-        return $this->_genderInterest;
+        return $this->_seeking;
     }
 
     /**
-     * @param mixed $genderInterest
+     * @param mixed $seeking
      */
-    public function setGenderInterest($genderInterest): void
+    public function setSeeking($seeking): void
     {
-        $this->_genderInterest = $genderInterest;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBiography()
-    {
-        return $this->_biography;
-    }
-
-    /**
-     * @param mixed $biography
-     */
-    public function setBiography($biography): void
-    {
-        $this->_biography = $biography;
+        $this->_seeking = $seeking;
     }
 
     /**
      * @return mixed
      */
-    public function getIndoorInterests()
+    public function getBio()
     {
-        return $this->_indoorInterests;
+        return $this->_bio;
     }
 
     /**
-     * @param mixed $indoorInterests
+     * @param mixed $bio
      */
-    public function setIndoorInterests($indoorInterests): void
+    public function setBio($bio): void
     {
-        $this->_indoorInterests = $indoorInterests;
+        $this->_bio = $bio;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getOutdoorInterests()
+    public function isMember(): bool
     {
-        return $this->_outdoorInterests;
+        return $this->_member;
     }
 
-    /**
-     * @param mixed $outdoorInterests
-     */
-    public function setOutdoorInterests($outdoorInterests): void
-    {
-        $this->_outdoorInterests = $outdoorInterests;
-    }
+
+
 }
