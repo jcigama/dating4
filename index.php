@@ -4,9 +4,6 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//Start a session
-session_start();
-
 //Require the autoload file
 require_once('vendor/autoload.php');
 
@@ -14,8 +11,11 @@ require_once('vendor/autoload.php');
 $f3 = Base::instance();
 $validator = new Validate();
 $dataLayer = new DataLayer();
-$profile = new Profile();
 $controller = new Controller($f3);
+
+
+//Start a session
+session_start();
 
 //Error Reporting
 $f3->set('DEBUG', 3);
