@@ -185,7 +185,4 @@ class Member
     {
         return $this->_member;
     }
-
-
-
 }
